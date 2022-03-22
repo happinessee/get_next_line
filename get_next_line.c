@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:21 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/22 12:52:25 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:07:41 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 #include <unistd.h>
 #include <limits.h>
-#include <stdio.h>
+
 /* 임시___반드시 지울 것 */
-#define BUFFER_SIZE 42
+#define BUFFER_SIZE 4
 
 static void	make_line(char *new_str, char *buffer, char *buffer2, char *flag)
 {
