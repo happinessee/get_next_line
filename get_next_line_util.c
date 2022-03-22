@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:26 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/21 12:51:41 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:15:46 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 	index = 0;
 	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
+	src_len = ft_strlen((char *)src);
 	if (dstsize <= dst_len)
 		return (src_len + dstsize);
 	while (src[index] && dst_len + index + 1 < dstsize)
@@ -82,7 +82,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*str;
 	size_t	len;
 
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	len = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
 	str = ft_calloc(len, sizeof(char));
 	if (str == 0)
 		return (0);
