@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:26 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/28 12:49:44 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:17:46 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,11 @@ char	*ft_strjoin(char *s1, char *s2, int flag)
 		return (0);
 	ft_strlcat(str, s1, len);
 	ft_strlcat(str, s2, len);
-	if (s1 && flag)
+	if (s1 && flag == 1)
 		free (s1);
-	if (s2 && flag)
+	if (s2 && flag == 1)
 		free (s2);
+	if (flag == 2)
+		free (s1);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:21 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/28 13:42:07 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:16:18 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 /* 임시___반드시 지울 것 */
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 1
 #endif
 
 ssize_t	is_newline(char *str)
@@ -37,6 +37,8 @@ ssize_t	is_newline(char *str)
 	return (-1);
 }
 
+// buffer free 해준다.
+// 오류라면, buffer 뿐만 아니라 tmp도 free 해준다.
 char	*ft_read(int fd)
 {
 	char	*buffer;
@@ -57,7 +59,7 @@ char	*ft_read(int fd)
 		}
 		if (read_tmp == 0)
 			break ;
-		tmp = ft_strjoin(tmp, buffer, 0);
+		tmp = ft_strjoin(tmp, buffer, 2);
 		if (is_newline(buffer) != -1)
 			break ;
 		ft_bzero(buffer, BUFFER_SIZE);
@@ -66,19 +68,23 @@ char	*ft_read(int fd)
 	return (tmp);
 }
 
+// 개행 전까지의 문자열을 할당해 return 해준다 (free 필요)
 char	*split(char *tmp)
 {
 	ssize_t	idx;
 	char	*buffer;
 
+	if (tmp == 0)
+		return (0);
 	idx = is_newline(tmp);
 	if (idx == -1)
 		idx = ft_strlen(tmp);
-	buffer = ft_calloc(idx + 1, sizeof(char));
+	buffer = ft_calloc(idx + 2, sizeof(char));
 	ft_strlcat(buffer, tmp, idx + 2);
 	return (buffer);
 }
 
+// 개행 전까지의 문자열을 제거하고 free, 새로운 
 char	*remain_tmp(char *tmp)
 {
 	ssize_t	idx;
@@ -112,21 +118,15 @@ char	*get_next_line(int fd)
 		tmp = ft_strjoin(tmp, ft_read(fd), 1);
 	else
 		tmp = ft_read(fd);
+	if (tmp == 0)
+		return (0);
+	if (tmp[0] == '\0')
+	{
+		free(tmp);
+		tmp = 0;
+		return (0);
+	}
 	buffer = split(tmp);
-	if (tmp == 0)
-	{
-		free(tmp);
-		free(buffer);
-		return (0);
-	}
 	tmp = remain_tmp(tmp);
-	if (tmp == 0)
-	{
-		free(tmp);
-		free(buffer);
-		return (0);
-	}
-	if (buffer[0] == '\0')
-		return (0);
 	return (buffer);
 }
