@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:21 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/28 17:16:18 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:49:34 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 #include <unistd.h>
 #include <limits.h>
 #include <stdlib.h>
-
-/* 임시___반드시 지울 것 */
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
-#endif
 
 ssize_t	is_newline(char *str)
 {
@@ -37,8 +32,6 @@ ssize_t	is_newline(char *str)
 	return (-1);
 }
 
-// buffer free 해준다.
-// 오류라면, buffer 뿐만 아니라 tmp도 free 해준다.
 char	*ft_read(int fd)
 {
 	char	*buffer;
@@ -68,7 +61,6 @@ char	*ft_read(int fd)
 	return (tmp);
 }
 
-// 개행 전까지의 문자열을 할당해 return 해준다 (free 필요)
 char	*split(char *tmp)
 {
 	ssize_t	idx;
@@ -84,7 +76,6 @@ char	*split(char *tmp)
 	return (buffer);
 }
 
-// 개행 전까지의 문자열을 제거하고 free, 새로운 
 char	*remain_tmp(char *tmp)
 {
 	ssize_t	idx;
@@ -102,7 +93,6 @@ char	*remain_tmp(char *tmp)
 	return (new_str);
 }
 
-// 메모리 관리 엄청 신경쓸 것!!
 char	*get_next_line(int fd)
 {
 	static char	*tmp;

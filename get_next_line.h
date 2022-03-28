@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:41 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/28 12:01:55 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:49:11 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 # define GET_NEXT_LINE_H
 
 # include <stddef.h>
-# include <sys/types.h>
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(char *str);
