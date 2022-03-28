@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:26 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/23 18:45:15 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:37:19 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	ft_strlen(char *str)
 	size_t	cnt;
 
 	cnt = 0;
+	if (str == 0)
+		return (0);
 	while (str[cnt])
 		cnt++;
 	return (cnt);
@@ -68,6 +70,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	src_len = ft_strlen((char *)src);
 	if (dstsize <= dst_len)
 		return (src_len + dstsize);
+	if (dst == 0 || src == 0)
+		return (0);
 	while (src[index] && dst_len + index + 1 < dstsize)
 	{
 		dst[dst_len + index] = src[index];

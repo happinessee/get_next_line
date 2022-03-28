@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:41 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/21 15:12:16 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:37:30 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include <stddef.h>
+# include <sys/types.h>
 
 typedef struct s_list
 {
