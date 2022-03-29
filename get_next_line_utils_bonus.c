@@ -6,11 +6,11 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:13:28 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/28 17:25:10 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:24:16 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 #include <stdlib.h>
 

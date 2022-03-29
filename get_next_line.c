@@ -6,17 +6,16 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 22:14:21 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/03/28 17:49:34 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:18:52 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 #include <unistd.h>
-#include <limits.h>
 #include <stdlib.h>
 
-ssize_t	is_newline(char *str)
+static ssize_t	is_newline(char *str)
 {
 	ssize_t	idx;
 
@@ -32,7 +31,7 @@ ssize_t	is_newline(char *str)
 	return (-1);
 }
 
-char	*ft_read(int fd)
+static char	*ft_read(int fd)
 {
 	char	*buffer;
 	int		read_tmp;
@@ -61,7 +60,7 @@ char	*ft_read(int fd)
 	return (tmp);
 }
 
-char	*split(char *tmp)
+static char	*split(char *tmp)
 {
 	ssize_t	idx;
 	char	*buffer;
@@ -76,7 +75,7 @@ char	*split(char *tmp)
 	return (buffer);
 }
 
-char	*remain_tmp(char *tmp)
+static char	*remain_tmp(char *tmp)
 {
 	ssize_t	idx;
 	char	*new_str;
@@ -98,16 +97,15 @@ char	*get_next_line(int fd)
 	static char	*tmp;
 	char		*buffer;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
 	if (is_newline(tmp) != -1)
 	{
 		buffer = split(tmp);
 		tmp = remain_tmp(tmp);
 		return (buffer);
 	}
-	if (tmp)
-		tmp = ft_strjoin(tmp, ft_read(fd), 1);
-	else
-		tmp = ft_read(fd);
+	tmp = ft_strjoin(tmp, ft_read(fd), 1);
 	if (tmp == 0)
 		return (0);
 	if (tmp[0] == '\0')
